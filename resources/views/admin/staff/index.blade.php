@@ -55,11 +55,7 @@
 
                                             <th>Edit</th>
 
-                                            @if (Auth::user()->role->id==1)
-
-                                            <th>Delete</th>
-                                            @endif
-
+                                            
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -85,32 +81,10 @@
 
                                             </td>
 
-                                            @if (Auth::user()->role->id==1)
-
-                                            <td style="text-align: center">
-                                                <form id="delete-form-{{$staff->id}}" style="display: none"
-                                                    action="{{ route('staff.destroy',$staff->id) }}"
-                                                    method="post">
-                                                    {{ csrf_field() }}
-                                                    {{method_field('DELETE')}}
-                                                </form>
-                                                <a href="" onclick="
-                    if (confirm('Are you sure you want to delete this?')) {
-                        event.preventDefault();
-                    document.getElementById('delete-form-{{$staff->id}}').submit();
-                    } else {
-                        event.preventDefault();
-                    }
-                "><span class="fa fa-trash fa-2x text-danger"></span>
-                                                </a>
-
-                                            </td>
-                                            {{-- @endif --}}
-
-
+                                           
                                         </tr>
 
-                                        @endif
+                                        
                                         @endforeach
                                     </tbody>
                                     <tfoot>
@@ -125,10 +99,7 @@
 
                                             <th>Edit</th>
 
-                                            @if (Auth::user()->role->id==1)
-
-                                            <th>Delete</th>
-                                            @endif
+                                            
 
                                         </tr>
                                     </tfoot>

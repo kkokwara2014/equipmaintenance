@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
+
+use Auth;
+
 
 class StaffController extends Controller
 {
@@ -13,7 +17,10 @@ class StaffController extends Controller
      */
     public function index()
     {
-        //
+        $user = Auth::user();
+        $staffs = User::where('role_id','2')->orderBy('created_at', 'desc')->get();
+
+        return view('admin.staff.index', compact('user', 'staffs'));
     }
 
     /**
@@ -34,7 +41,25 @@ class StaffController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'lastname' => 'required|string',
+            'firstname' => 'required|string',
+            'email' => 'required',
+            'phone' => 'required',
+            'password' => 'required',
+        ]);
+
+        $user = new User;
+        $user->lastname = $request->lastname;
+        $user->firstname = $request->firstname;
+        $user->phone = $request->phone;
+        $user->email = $request->email;
+        $user->password = bcrypt($request->password);
+        $user->role_id = $request->role_id;
+        
+        $user->save();
+
+        return redirect(route('staff.index'));
     }
 
     /**

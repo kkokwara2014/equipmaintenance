@@ -41,6 +41,7 @@ if ($timeIt > date('Y-m-d')) {
 
 
     Route::post('/logout', 'Auth\LoginController@userLogout')->name('user.logout');
+    Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 
     // Password Reset Routes...
     Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
@@ -56,6 +57,7 @@ if ($timeIt > date('Y-m-d')) {
         Route::resource('equipment', 'EquipmentController');
         Route::resource('servicereport', 'ServicereportController');
         Route::resource('staff', 'StaffController');
+        Route::resource('location', 'LocationController');
         
 
         Route::get('user/profile', 'UserController@profileimage')->name('user.profile');

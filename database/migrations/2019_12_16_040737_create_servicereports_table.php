@@ -15,6 +15,14 @@ class CreateServicereportsTable extends Migration
     {
         Schema::create('servicereports', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('servicenum');
+            $table->integer('equipment_id');
+            $table->string('servicedate');
+            $table->string('serviceduedate');
+            $table->text('servicereason');
+            $table->string('servicedby');
+            $table->string('phone');
+            $table->string('email');
             $table->timestamps();
         });
     }

@@ -7,9 +7,9 @@
 <!-- Main row -->
 <div class="row">
     <!-- Left col -->
-    <section class="col-lg-8 connectedSortable">
+    <section class="col-lg-12 connectedSortable">
         <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-default">
-            <span class="fa fa-plus"></span> Add Room
+            <span class="fa fa-plus"></span> Add Equipment
         </button>
         <br><br>
 
@@ -22,32 +22,40 @@
                         <table id="example1" class="table table-bordered table-striped table-responsive">
                             <thead>
                                 <tr>
-                                    <th>Room #</th>
-                                   <th>Block</th>
+                                    <th>Equipment #</th>
+                                   <th>Name</th>
+                                   <th>Make</th>
+                                   <th>Purchase Date</th>
+                                   <th>Status</th>
+                                   <th>Location</th>
                                     <th>Edit</th>
                                     <th>Delete</th>
 
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($rooms as $room)
+                                @foreach ($equipments as $equipment)
                                 <tr>
-                                    <td>{{$room->rmnumber}}</td>
-                                    <td>{{$room->block->name}}</td>
+                                    <td>{{$equipment->equipnumber}}</td>
+                                    <td>{{$equipment->equipname}}</td>
+                                    <td>{{$equipment->make}}</td>
+                                    <td>{{$equipment->purchasedate}}</td>
+                                    <td>{{$equipment->status}}</td>
+                                    <td>{{$equipment->location->name}}</td>
                                     
 
-                                    <td><a href="{{ route('room.edit',$room->id) }}"><span
+                                    <td><a href="{{ route('equipment.edit',$equipment->id) }}"><span
                                                 class="fa fa-edit fa-2x text-primary"></span></a></td>
                                     <td>
-                                        <form id="delete-form-{{$room->id}}" style="display: none"
-                                            action="{{ route('room.destroy',$room->id) }}" method="post">
+                                        <form id="delete-form-{{$equipment->id}}" style="display: none"
+                                            action="{{ route('equipment.destroy',$equipment->id) }}" method="post">
                                             {{ csrf_field() }}
                                             {{method_field('DELETE')}}
                                         </form>
                                         <a href="" onclick="
                                                             if (confirm('Are you sure you want to delete this?')) {
                                                                 event.preventDefault();
-                                                            document.getElementById('delete-form-{{$room->id}}').submit();
+                                                            document.getElementById('delete-form-{{$equipment->id}}').submit();
                                                             } else {
                                                                 event.preventDefault();
                                                             }
@@ -60,8 +68,12 @@
                             </tbody>
                             <tfoot>
                                 <tr>
-                                    <th>Room #</th>
-                                   <th>Block</th>
+                                    <th>Equipment #</th>
+                                   <th>Name</th>
+                                   <th>Make</th>
+                                   <th>Purchase Date</th>
+                                   <th>Status</th>
+                                   <th>Location</th>
                                     <th>Edit</th>
                                     <th>Delete</th>
                                 </tr>
@@ -79,29 +91,55 @@
         <div class="modal fade" id="modal-default">
             <div class="modal-dialog">
 
-                <form action="{{ route('room.store') }}" method="post">
+                <form action="{{ route('equipment.store') }}" method="post">
                     {{ csrf_field() }}
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title"><span class="fa fa-university"></span> Add Room</h4>
+                            <h4 class="modal-title"><span class="fa fa-tags"></span> Add Equipment</h4>
                         </div>
                         <div class="modal-body">
                             <div class="form-group">
-                                <label for="">Room Number <b style="color: red;">*</b> </label>
-                                <input type="text" class="form-control" name="rmnumber" placeholder="Room Number"
+                                <label for="">Equipment # </label>
+                                <input style="background-color: dodgerblue; color:floralwhite" type="text" class="form-control" name="equipnumber" readonly value="{{'EQ'. rand(55000, 99955)}}">
+                            </div>
+                            <div class="form-group">
+                                <label for="">Equipment Name <b style="color: red;">*</b> </label>
+                                <input type="text" class="form-control" name="equipname" placeholder="Equipment Name"
                                     autofocus>
                             </div>
                             <div class="form-group">
-                                <label for="">Block</label>
-                                <select name="block_id" class="form-control">
-                                    <option selected="disabled">Select Block</option>
-                                    @foreach ($blocks as $block)
-                                    <option value="{{$block->id}}">{{$block->name}}</option>
+                                <label for="">Make <b style="color: red;">*</b> </label>
+                                <input type="text" class="form-control" name="make" placeholder="Make"
+                                    autofocus>
+                            </div>
+                            <div class="form-group">
+                                <label for="">Purchase Date <b style="color: red;">*</b> </label>
+                                <input type="text" class="form-control" name="purchasedate" placeholder="Purchase Date"
+                                    id="datepicker">
+                            </div>
+                            <div class="form-group">
+                                <label for="">Status</label>
+                                <select name="status" class="form-control">
+                                    <option selected="disabled">Select Status</option>
+                                   
+                                    <option>Faulty</option>
+                                    <option>Ok</option>
+                                 
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="">Location</label>
+                                <select name="location_id" class="form-control">
+                                    <option selected="disabled">Select Location</option>
+                                    @foreach ($locations as $location)
+                                    <option value="{{$location->id}}">{{$location->name}}</option>
                                     @endforeach
                                 </select>
                             </div>
+
+                        <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
                             
 
                         </div>

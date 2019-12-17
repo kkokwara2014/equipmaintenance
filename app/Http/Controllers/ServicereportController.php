@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Equipment;
+use App\Servicereport;
 use Illuminate\Http\Request;
+
+use Auth;
 
 class ServicereportController extends Controller
 {
@@ -13,7 +17,12 @@ class ServicereportController extends Controller
      */
     public function index()
     {
-        //
+        $user=Auth::user();
+        
+        $equipments=Equipment::orderBy('equipname','asc')->get();
+        $servicereports=Servicereport::orderBy('created_at','desc')->get();
+
+        return view('admin.servicereport.index',compact('user','servicereports','equipments'));
     }
 
     /**
@@ -34,7 +43,10 @@ class ServicereportController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+        Servicereport::create($request->all());
+
+        return redirect(route('servicereport.index'));
     }
 
     /**
@@ -68,7 +80,19 @@ class ServicereportController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
+
+        $servicereport=Servicereport::find($id);
+        $servicereport->servicenum=$request->servicenum;
+        $servicereport->equipment_id=$request->equipment_id;
+        $servicereport->servicedate=$request->servicedate;
+        $servicereport->serviceduedate=$request->serviceduedate;
+        $servicereport->servicereason=$request->servicereason;
+        $servicereport->servicedby=$request->servicedby;
+        $servicereport->phone=$request->phone;
+        $servicereport->save();
+
+        return redirect(route('servicereport.index'));
     }
 
     /**

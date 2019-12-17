@@ -1,8 +1,8 @@
 <footer class="main-footer">
   <div class="pull-right hidden-xs">
-    Powered by Nwani Adanne Rejoice - 2017/HND/23055/CS.
+    Powered by Nnah Ocheze Promise - 2017/HND//CS.
   </div>
-  <strong>Copyright &copy; 2019 examtimetabler</strong> All rights
+  <strong>Copyright &copy; 2019 equipmaintenance</strong> All rights
   reserved.
 </footer>
 
@@ -286,6 +286,11 @@
 
     //Date picker
     $('#datepicker').datepicker({
+      autoclose: true,
+     
+    })
+    //Date picker2
+    $('#datepicker2').datepicker({
       autoclose: true,
      
     })

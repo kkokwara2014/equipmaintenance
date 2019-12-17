@@ -10,10 +10,10 @@
           <div class="inner">
           <h3>0</h3>
   
-            <p>Courses</p>
+            <p>Location</p>
           </div>
           <div class="icon">
-            <i class="fa fa-file-text-o"></i>
+            <i class="fa fa-map-marker"></i>
           </div>
           <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
         </div>
@@ -24,10 +24,10 @@
           <div class="inner">
           <h3>9</h3>
   
-            <p>Room</p>
+            <p>Equipment</p>
           </div>
           <div class="icon">
-            <i class="fa fa-bank"></i>
+            <i class="fa fa-tags"></i>
           </div>
           <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
         </div>
@@ -40,10 +40,10 @@
           <div class="inner">
             <h3>2</h3>
   
-            <p>Invigilator</p>
+            <p>Service Reports</p>
           </div>
           <div class="icon">
-            <i class="fa fa-graduation-cap"></i>
+            <i class="fa fa-file-pdf-o"></i>
           </div>
           <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
         </div>
@@ -54,7 +54,7 @@
           <div class="inner">
             <h3>1</h3>
   
-            <p>Admin</p>
+            <p>Staff</p>
           </div>
           <div class="icon">
             <i class="fa fa-user-plus"></i>

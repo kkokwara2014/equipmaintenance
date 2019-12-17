@@ -30,39 +30,13 @@
       {{-- <li><a href="{{route('user.profile')}}"><i class="fa fa-picture-o"></i> Upload Profile Photo</a></li> --}}
       {{-- <li><a href="{{route('comment.index')}}"><i class="fa fa-comment-o"></i> Comments</a></li> --}}
 
-      {{-- only for the Admin --}}
-      {{-- @if (Auth::user()->role->id==1) --}}
-      <li><a href="{{route('department.index')}}"><i class="fa fa-university"></i> Department</a></li>
-      {{-- <li><a href="{{route('classlevel.index')}}"><i class="fa fa-th"></i> Class Level</a></li> --}}
-      <li><a href="{{route('course.index')}}"><i class="fa fa-file-text-o"></i> Courses</a></li>
-      {{-- @endif --}}
-
       {{-- @if (Auth::user()->role->id==1||Auth::user()->role->id==3) --}}
 
-      <li><a href="{{route('block.index')}}"><i class="fa fa-bank"></i> Block</a></li>
-      <li><a href="{{route('room.index')}}"><i class="fa fa-bank"></i> Rooms</a></li>
-      <li><a href="{{route('invigilator.index')}}"><i class="fa fa-graduation-cap"></i> Invigilator</a></li>
-      <li><a href="{{route('schedule.index')}}"><i class="fa fa-exchange"></i> Schedule Exam</a></li>
+      <li><a href="{{route('location.index')}}"><i class="fa fa-map-marker"></i> Location</a></li>
+      <li><a href="{{route('equipment.index')}}"><i class="fa fa-tags"></i> Equipment</a></li>
+      <li><a href="{{route('servicereport.index')}}"><i class="fa fa-file-pdf-o"></i> Serviced Reports</a></li>
+      <li><a href="{{route('staff.index')}}"><i class="fa fa-users"></i> Staff</a></li>
 
-      {{-- @endif --}}
-
-      {{-- Only Admin and Project Coordinator --}}
-      {{-- @if (Auth::user()->role->id==1||Auth::user()->role->id==2) --}}
-      {{-- <li><a href="{{route('project.allocated')}}"><i class="fa fa-exchange"></i> Allocated Projects</a></li> --}}
-      {{-- @endif --}}
-      {{-- @endif --}}
-
-
-
-      {{-- Only Admin and Lecturer --}}
-      {{-- @if (Auth::user()->role->id==1||Auth::user()->role->id==2)
-      <li><a href="{{route('lecturer.index')}}"><i class="fa fa-graduation-cap"></i> Lecturers</a></li>
-      @endif --}}
-
-
-      {{-- Only for Admin --}}
-      {{-- @if (Auth::user()->role->id==1) --}}
-      {{-- <li><a href="{{route('admin.admins')}}"><i class="fa fa-user-plus"></i> Admins</a></li> --}}
       {{-- @endif --}}
 
       <li>

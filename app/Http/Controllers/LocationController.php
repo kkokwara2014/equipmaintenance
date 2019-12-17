@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Location;
 use Illuminate\Http\Request;
+
+use Auth;
 
 class LocationController extends Controller
 {
@@ -13,7 +16,10 @@ class LocationController extends Controller
      */
     public function index()
     {
-        //
+        $user=Auth::user();
+        $locations=Location::orderBy('created_at','desc')->get();
+
+        return view('admin.location.index',compact('user','locations'));
     }
 
     /**
@@ -34,7 +40,13 @@ class LocationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+            'name'=>'required',
+        ]);
+
+        Location::create($request->all());
+
+        return redirect(route('location.index'));
     }
 
     /**
@@ -56,7 +68,10 @@ class LocationController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user=Auth::user();
+        $locations=Location::where('id',$id)->first();
+
+        return view('admin.location.edit',compact('user','locations'));
     }
 
     /**
@@ -68,7 +83,16 @@ class LocationController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request,[
+            'name'=>'required',
+        ]);
+
+        $location=Location::find($id);
+
+        $location->name=$request->name;
+        $location->save();
+
+        return redirect(route('location.index'));
     }
 
     /**
@@ -79,6 +103,8 @@ class LocationController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Location::where('id',$id)->delete();
+
+        return back();
     }
 }

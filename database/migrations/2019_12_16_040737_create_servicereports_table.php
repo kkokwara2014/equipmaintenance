@@ -22,7 +22,6 @@ class CreateServicereportsTable extends Migration
             $table->text('servicereason');
             $table->string('servicedby');
             $table->string('phone');
-            $table->string('email');
             $table->timestamps();
         });
     }
